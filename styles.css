@@ -106,6 +106,9 @@ h1, h2, h3, h4 { letter-spacing: 0; }
 .site-nav a[aria-current="true"] { color: var(--deep-teal); }
 
 .print-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 38px;
   padding: 0 15px;
   border: 1px solid var(--deep-teal);
@@ -115,6 +118,7 @@ h1, h2, h3, h4 { letter-spacing: 0; }
   cursor: pointer;
   font-size: 12px;
   font-weight: 800;
+  text-decoration: none;
 }
 .print-button:hover { color: var(--white); background: var(--deep-teal); }
 .print-button:focus-visible,
@@ -577,22 +581,27 @@ html.motion-ready [data-reveal].is-visible { opacity: 1; transform: translateY(0
 }
 
 @media print {
-  @page { size: A4; margin: 14mm; }
+  @page { size: A4; margin: 12mm 14mm 15mm; }
   :root { --page: 100%; }
-  body { color: #111; background: #fff; font-size: 10pt; }
+  html { scroll-behavior: auto; }
+  body { color: #111; background: #fff; font-size: 9.5pt; }
+  .skip-link { display: none !important; }
   .site-header,
   .hero-next,
   .print-button { display: none !important; }
-  .hero { min-height: 0; height: auto; max-height: none; break-after: page; color: #fff; background: var(--deep-teal); print-color-adjust: exact; }
-  .hero-shade { display: none; }
+  .hero { min-height: 0; height: 225mm; max-height: none; break-after: page; color: #fff; background-color: var(--deep-teal); print-color-adjust: exact; }
+  .hero-shade { background: rgba(9, 37, 37, 0.86); print-color-adjust: exact; }
   .hero-inner { padding: 26mm 0; }
   .hero h1 { font-size: 42pt; }
   .hero-statement { font-size: 16pt; }
-  .section-inner { padding: 18mm 0; }
+  .section { break-before: page; }
+  .section-inner { padding: 12mm 0; }
   .section-heading h2,
   .epic-heading h2,
   .custom-intro h2,
   .sovereignty-title h2 { font-size: 28pt; }
+  h1, h2, h3, h4 { break-after: avoid; }
+  p, li, dd { orphans: 3; widows: 3; }
   .agent-card,
   .case,
   .foundation,
