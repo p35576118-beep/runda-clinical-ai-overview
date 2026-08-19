@@ -1,12 +1,9 @@
 (function createClinicalAiOverview() {
   "use strict";
 
-  const printButton = document.querySelector("[data-print]");
   const revealTargets = [...document.querySelectorAll("[data-reveal]")];
   const sections = [...document.querySelectorAll("[data-section]")];
   const navLinks = [...document.querySelectorAll(".site-nav a")];
-
-  if (printButton) printButton.addEventListener("click", () => window.print());
 
   function alignCurrentHash() {
     if (!window.location.hash) return;
